@@ -1,6 +1,6 @@
 # Ejemplos de código
 
-Sketches autocontenidos: cada carpeta tiene un `.ino` con el mismo nombre y **funciona igual en WROOM-32 y en ESP32-C6**, salvo el pin del ADC que se resuelve con `#if defined(ARDUINO_ESP32C6_DEV) || defined(CONFIG_IDF_TARGET_ESP32C6)`.
+Sketch autocontenido por carpeta: el `.ino` es para **Arduino IDE** y el `main.c` de la misma carpeta es la versión para **ESP-IDF v5.x** (VS Code + extensión ESP-IDF). Ambos funcionan igual en WROOM-32 y en ESP32-C6, salvo el pin del ADC que se resuelve con `#if` (`ARDUINO_ESP32C6_DEV` / `CONFIG_IDF_TARGET_ESP32C6`).
 
 | # | Carpeta | Concepto | Pines |
 |---|---|---|---|
@@ -12,6 +12,29 @@ Sketches autocontenidos: cada carpeta tiene un `.ino` con el mismo nombre y **fu
 | 05 | `05_potenciometro` | ADC 12 bits, `map`, Serial | 32 / 0, 21 |
 | 06 | `06_alerta_luz` | LDR + LED + buzzer, histéresis | 32 / 0, 21, 22 |
 | 07 | `07_wifi_scan` | `WiFi.scanNetworks()` | — |
+
+## Versión ESP-IDF (`main.c`)
+
+Cada carpeta trae un `main.c` con la misma lógica que el `.ino`, escrito con la API de ESP-IDF v5.x. No es un proyecto completo: es el archivo que se reemplaza dentro de un proyecto generado por la extensión.
+
+1. En VS Code: **ESP-IDF: New Project** (o **Show Examples** → `get-started` → `sample_project`).
+2. Elige el target: `esp32` (WROOM-32) o `esp32c6`.
+3. Reemplaza el contenido de `main/main.c` por el del ejemplo.
+4. **ESP-IDF: Build** y **ESP-IDF: Flash**, luego abre el monitor a **115200**.
+
+Equivalencias que cambian al pasar de Arduino a ESP-IDF:
+
+| Arduino | ESP-IDF |
+|---|---|
+| `setup()` / `loop()` | `app_main()` con un `while (1)` |
+| `delay(ms)` | `vTaskDelay(pdMS_TO_TICKS(ms))` |
+| `millis()` | `esp_timer_get_time() / 1000` |
+| `pinMode` / `digitalWrite` | `gpio_set_direction` / `gpio_set_level` |
+| `analogWrite` | driver **LEDC** (temporizador + canal) |
+| `analogRead` | driver **ADC oneshot** (unidad + canal) |
+| `tone()` | LEDC con duty al 50 % |
+| `Serial.print` | `printf` |
+| `WiFi.scanNetworks()` | `esp_wifi_scan_start` + `esp_wifi_scan_get_ap_records` |
 
 ## Cómo abrir un ejemplo
 
