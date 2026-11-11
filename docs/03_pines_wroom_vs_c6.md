@@ -172,6 +172,7 @@ Los ejemplos traen bloques `#elif defined(HELTEC_V3)`. La macro no la define el 
 
 - **Arduino IDE:** escribe `#define HELTEC_V3` en la primera línea del sketch, antes de todo.
 - **ESP-IDF:** escribe `#define HELTEC_V3` justo después de los `#include`, o agrégalo en `main/CMakeLists.txt` con `target_compile_definitions(${COMPONENT_LIB} PRIVATE HELTEC_V3)`.
+  En la extensión de VS Code, **ESP-IDF: Set Espressif Device Target** solo muestra chips (`esp32s3`), no placas: `esp32s3` es la opción correcta para el Heltec. La placa se indica con la macro, no con el target. El puerto suele ser `/dev/ttyUSB0` (CP2102).
 - **Placa en Arduino IDE:** `Heltec WiFi LoRa 32(V3)` o, con `arduino-cli`, `esp32:esp32:heltec_wifi_lora_32_V3`.
 
 Sin esa macro los ejemplos usan el mapa de WROOM-32 / C6 / S3 y los LEDs o el sensor no responden en el Heltec.
