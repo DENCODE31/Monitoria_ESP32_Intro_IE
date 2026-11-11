@@ -7,62 +7,66 @@
  *          a traves de un divisor (1 kohm entre ECHO y el pin, 2 kohm del pin
  *          a GND): el ECHO del sensor entrega 5 V y el ESP32 solo aguanta 3.3 V.
  *          LED en GPIO21 con resistencia de 220 ohm a GND.
- *
- * Si el objeto esta a menos de UMBRAL_CM, el LED se enciende. Es la base del
- * proyecto final (sensor de parqueadero).
  */
 
-const uint8_t PIN_TRIG = 18;
-const uint8_t PIN_ECHO = 19;
-const uint8_t PIN_LED  = 21;
+// ---------- NUMEROS DE LOS PINES ----------
+const uint8_t PIN_TRIG = 18;          // TRIG: por aqui el ESP32 manda el disparo
+const uint8_t PIN_ECHO = 19;          // ECHO: por aqui responde el sensor
+const uint8_t PIN_LED  = 21;          // LED: avisa que hay algo cerca
 
-const float UMBRAL_CM = 20.0;        // distancia que enciende el LED
-const uint16_t INTERVALO_MS = 100;   // el sensor necesita aire entre disparos
-const uint32_t TIMEOUT_US = 30000;   // ~5 m: si no hay eco, pulseIn devuelve 0
+// ---------- VALORES QUE PODEMOS CAMBIAR ----------
+const float UMBRAL_CM = 20.0;         // si la distancia es menor a 20 cm, prende el LED
+const uint16_t INTERVALO_MS = 100;    // espera 100 ms entre una medida y la siguiente
+const uint32_t TIMEOUT_US = 30000;    // si el eco no llega en 30 ms, se descarta la medida
 
-unsigned long tUltimo = 0;
+// ---------- MEMORIA DEL PROGRAMA ----------
+unsigned long tUltimo = 0;            // guarda el instante de la ultima medida
 
 void setup() {
-    pinMode(PIN_TRIG, OUTPUT);
-    pinMode(PIN_ECHO, INPUT);
-    pinMode(PIN_LED, OUTPUT);
+    pinMode(PIN_TRIG, OUTPUT);        // TRIG manda senal: es una salida
+    pinMode(PIN_ECHO, INPUT);         // ECHO recibe senal: es una entrada
+    pinMode(PIN_LED, OUTPUT);         // el LED se enciende y se apaga: es una salida
 
-    digitalWrite(PIN_TRIG, LOW);
-    Serial.begin(115200);
-    delay(500);
-    Serial.println(F("Acerca la mano al sensor (umbral 20 cm)."));
+    digitalWrite(PIN_TRIG, LOW);      // deja TRIG en 0 para que no dispare solo
+    Serial.begin(115200);             // abre el monitor serial a 115200 baudios
+    delay(500);                       // pausa corta para que alcances a abrir el monitor
+    Serial.println(F("Acerca la mano al sensor (umbral 20 cm)."));   // mensaje inicial
 }
 
 void loop() {
+    // millis() cuenta los milisegundos desde que arranco la placa
     if (millis() - tUltimo < INTERVALO_MS) {
-        return;                       // aun no toca medir
+        return;                       // todavia no pasan 100 ms: sale y vuelve a entrar
     }
-    tUltimo = millis();
+    tUltimo = millis();               // guarda este instante como el ultimo medido
 
-    // Pulso de 10 us en TRIG: el sensor responde con un pulso en ECHO
-    digitalWrite(PIN_TRIG, HIGH);
-    delayMicroseconds(10);
-    digitalWrite(PIN_TRIG, LOW);
+    // 1. el ESP32 manda un pulso de 10 microsegundos por TRIG
+    digitalWrite(PIN_TRIG, HIGH);     // sube TRIG
+    delayMicroseconds(10);            // lo mantiene arriba 10 us
+    digitalWrite(PIN_TRIG, LOW);      // lo baja: el disparo ya salio
 
-    // El ancho del pulso en ECHO es el tiempo de ida y vuelta del sonido
-    unsigned long duracion = pulseIn(PIN_ECHO, HIGH, TIMEOUT_US);
+    // 2. el sensor responde con un pulso en ECHO; su ancho es el tiempo del sonido
+    unsigned long duracion = pulseIn(PIN_ECHO, HIGH, TIMEOUT_US);   // mide el pulso en us
 
-    if (duracion == 0) {              // sin eco: objeto muy lejos o mal cableado
-        digitalWrite(PIN_LED, LOW);
-        Serial.println(F("Sin eco"));
-        return;
+    // 3. si pulseIn devuelve 0, no hubo eco
+    if (duracion == 0) {
+        digitalWrite(PIN_LED, LOW);   // apaga el LED
+        Serial.println(F("Sin eco")); // avisa en el monitor serial
+        return;                       // no hay distancia que calcular
     }
 
-    // 58 us por cm: sonido a 343 m/s, ida y vuelta
-    float distancia = duracion / 58.0;
+    // 4. pasa de tiempo a distancia: el sonido tarda 58 us en ir y volver 1 cm
+    float distancia = duracion / 58.0;   // resultado en centimetros
 
-    digitalWrite(PIN_LED, distancia < UMBRAL_CM ? HIGH : LOW);
+    // 5. compara con el umbral: cerca enciende, lejos apaga
+    digitalWrite(PIN_LED, distancia < UMBRAL_CM ? HIGH : LOW);   // ? : es un if corto
 
-    Serial.print(F("Distancia: "));
-    Serial.print(distancia, 1);
-    Serial.print(F(" cm"));
+    // 6. muestra el resultado en el monitor serial
+    Serial.print(F("Distancia: "));   // etiqueta
+    Serial.print(distancia, 1);       // el valor con 1 decimal
+    Serial.print(F(" cm"));           // unidad
     if (distancia < UMBRAL_CM) {
-        Serial.print(F("  <- LED encendido"));
+        Serial.print(F("  <- LED encendido"));   // aviso extra cuando esta cerca
     }
-    Serial.println();
+    Serial.println();                 // salto de linea para la proxima medida
 }
