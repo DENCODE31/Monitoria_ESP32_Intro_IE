@@ -55,6 +55,7 @@ Monitoria_ESP32_Intro_IE/
 │   ├── 02_esp32_vs_uno.md          # 3.3 V, límites, strapping pins
 │   ├── 03_pines_wroom_vs_c6.md     # tabla comparada de pines
 │   ├── 04_plan_sesion.md           # guion minuto a minuto del monitor
+│   ├── 05_entorno_esp_idf_vscode.md # flujo completo con VS Code + ESP-IDF
 │   └── CHEATSHEET.md               # resumen de una página
 ├── ejemplos/
 │   ├── 00_hola_serial/             # info del chip por Monitor Serie
@@ -64,7 +65,10 @@ Monitoria_ESP32_Intro_IE/
 │   ├── 04_boton/
 │   ├── 05_potenciometro/
 │   ├── 06_alerta_luz/              # integrador con LDR
-│   └── 07_wifi_scan/               # demo de Wi-Fi
+│   ├── 07_wifi_scan/               # demo de Wi-Fi
+│   ├── 08_ultrasonico_led_proyecto/ # HC-SR04 + LED
+│   ├── 09_ldr_led_proyecto/        # LDR + LED
+│   └── 10_servo_barrera/           # HC-SR04 + servo
 └── hardware/
     ├── lista_materiales.md
     └── conexiones.md
@@ -104,6 +108,8 @@ Kit completo: ~$60.000 – $85.000 COP. Ver [`hardware/lista_materiales.md`](har
 2. Abre `ejemplos/00_hola_serial/00_hola_serial.ino` y comprueba el Monitor Serie a **115200**.
 3. Continúa en orden: cada ejemplo reutiliza lo anterior.
 4. El guion de la sesión está en [`docs/04_plan_sesion.md`](docs/04_plan_sesion.md).
+
+**¿Programas en VS Code con ESP-IDF?** No uses los `.ino`: sigue [`docs/05_entorno_esp_idf_vscode.md`](docs/05_entorno_esp_idf_vscode.md) y copia el `main.c` de cada ejemplo.
 
 ## ⚠️ Advertencia eléctrica
 
