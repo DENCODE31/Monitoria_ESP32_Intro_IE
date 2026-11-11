@@ -8,6 +8,7 @@
  *
  *   WROOM-32 -> LDR en GPIO32 (ADC1_CH4)
  *   ESP32-C6 -> LDR en GPIO0  (ADC1_CH0)
+ *   ESP32-S3 -> LDR en GPIO1  (ADC1_CH0)
  * Ojo: el ESP32 no aguanta 5 V en el pin analogico. El divisor va a 3V3.
  *
  * En Arduino basta analogRead(). En ESP-IDF hay que crear una unidad ADC,
@@ -26,6 +27,9 @@
 // El target del proyecto define CONFIG_IDF_TARGET_ESP32C6 y elige solo.
 #if defined(CONFIG_IDF_TARGET_ESP32C6)
 #define PIN_ADC       0                 // ESP32-C6: GPIO0 es entrada analogica
+#define CANAL_ADC     ADC_CHANNEL_0     // y ese GPIO pertenece al canal 0
+#elif defined(CONFIG_IDF_TARGET_ESP32S3)
+#define PIN_ADC       1                 // ESP32-S3: GPIO1 es entrada analogica
 #define CANAL_ADC     ADC_CHANNEL_0     // y ese GPIO pertenece al canal 0
 #else
 #define PIN_ADC       32                // ESP32-WROOM-32: GPIO32 es entrada analogica

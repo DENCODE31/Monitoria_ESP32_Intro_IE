@@ -1,7 +1,7 @@
 /*
  * 00_hola_serial.ino - Conocer el chip por el Monitor Serie
  * Monitoria: Introduccion al ESP32 - Intro. Ing. Electronica (UNAL)
- * Placa: ESP32-WROOM-32 o ESP32-C6 DevKitC-1 (el codigo sirve en ambas)
+ * Placa: ESP32-WROOM-32, ESP32-C6 o ESP32-S3 (el codigo sirve en ambas)
  * Concepto: Serial.begin, impresion de datos, funciones ESP.get*()
  * Montaje: ninguno, solo el cable USB
  */

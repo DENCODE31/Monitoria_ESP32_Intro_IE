@@ -1,13 +1,14 @@
 /*
  * 09_ldr_led_proyecto.ino - LDR que enciende un LED al taparla
  * Monitoria: Introduccion al ESP32 - Intro. Ing. Electronica (UNAL)
- * Placa: ESP32-WROOM-32 o ESP32-C6 DevKitC-1
+ * Placa: ESP32-WROOM-32, ESP32-C6 o ESP32-S3
  * Concepto: analogRead(), resolucion de 12 bits, umbral, millis()
  * Montaje: LDR entre 3V3 y el pin analogico, y resistencia de 10 kohm de ese
  *          pin a GND (divisor de voltaje). LED en GPIO21 con 220 ohm a GND.
  *
  *   WROOM-32 -> LDR en GPIO32 (ADC1_CH4)
  *   ESP32-C6 -> LDR en GPIO0  (ADC1_CH0)
+ *   ESP32-S3 -> LDR en GPIO1  (ADC1_CH0)
  * El programa elige el pin solo, segun la placa que escogiste en el IDE.
  */
 
@@ -15,6 +16,8 @@
 // Estas macros las define la placa elegida: no hay que tocar nada.
 #if defined(ARDUINO_ESP32C6_DEV) || defined(CONFIG_IDF_TARGET_ESP32C6)
 const uint8_t PIN_LDR = 0;            // ESP32-C6: GPIO0 es entrada analogica
+#elif defined(ARDUINO_ESP32S3_DEV) || defined(CONFIG_IDF_TARGET_ESP32S3)
+const uint8_t PIN_LDR = 1;            // ESP32-S3: GPIO1 es entrada analogica
 #else
 const uint8_t PIN_LDR = 32;           // ESP32-WROOM-32: GPIO32 es entrada analogica
 #endif

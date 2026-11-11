@@ -1,7 +1,7 @@
 /*
  * 04_boton.ino - Pulsador con antirrebote por software
  * Monitoria: Introduccion al ESP32 - Intro. Ing. Electronica (UNAL)
- * Placa: ESP32-WROOM-32 o ESP32-C6 DevKitC-1
+ * Placa: ESP32-WROOM-32, ESP32-C6 o ESP32-S3
  * Concepto: entrada digital, INPUT_PULLUP, rebote, contador con millis()
  * Montaje: pulsador entre GPIO14 y GND, LED en GPIO21 con 220 ohm a GND
  *

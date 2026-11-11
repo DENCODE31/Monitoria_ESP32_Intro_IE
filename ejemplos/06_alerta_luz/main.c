@@ -24,6 +24,9 @@
 #if defined(CONFIG_IDF_TARGET_ESP32C6)
 #define PIN_ADC      0
 #define CANAL_ADC    ADC_CHANNEL_0    // ESP32-C6 DevKitC-1: GPIO0 (ADC1_CH0)
+#elif defined(CONFIG_IDF_TARGET_ESP32S3)
+#define PIN_ADC      1
+#define CANAL_ADC    ADC_CHANNEL_0    // ESP32-S3 DevKitC-1: GPIO1 (ADC1_CH0)
 #else
 #define PIN_ADC      32
 #define CANAL_ADC    ADC_CHANNEL_4    // ESP32-WROOM-32: GPIO32 (ADC1_CH4)

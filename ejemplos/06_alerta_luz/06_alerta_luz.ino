@@ -1,18 +1,21 @@
 /*
  * 06_alerta_luz.ino - Integrador: sensor LDR + LED + buzzer
  * Monitoria: Introduccion al ESP32 - Intro. Ing. Electronica (UNAL)
- * Placa: ESP32-WROOM-32 o ESP32-C6 DevKitC-1
+ * Placa: ESP32-WROOM-32, ESP32-C6 o ESP32-S3
  * Concepto: sensado analogico, umbral con histeresis, actuadores, millis()
  * Montaje: LDR entre 3V3 y el pin analogico, resistencia de 10 kohm de ese
  *          pin a GND. LED en GPIO21 (220 ohm a GND). Buzzer pasivo en GPIO22.
  *
  *   WROOM-32 -> LDR en GPIO32
  *   ESP32-C6 -> LDR en GPIO0
+ *   ESP32-S3 -> LDR en GPIO1
  */
 
 // La placa seleccionada en el IDE define estas macros: no hay que tocar nada.
 #if defined(ARDUINO_ESP32C6_DEV) || defined(CONFIG_IDF_TARGET_ESP32C6)
 const uint8_t PIN_LDR = 0;    // ESP32-C6 DevKitC-1: GPIO0 (ADC1_CH0)
+#elif defined(ARDUINO_ESP32S3_DEV) || defined(CONFIG_IDF_TARGET_ESP32S3)
+const uint8_t PIN_LDR = 1;    // ESP32-S3 DevKitC-1: GPIO1 (ADC1_CH0)
 #else
 const uint8_t PIN_LDR = 32;   // ESP32-WROOM-32: GPIO32 (ADC1_CH4)
 #endif

@@ -1,7 +1,7 @@
 /*
  * 02_semaforo.ino - Semaforo de tres estados
  * Monitoria: Introduccion al ESP32 - Intro. Ing. Electronica (UNAL)
- * Placa: ESP32-WROOM-32 o ESP32-C6 DevKitC-1
+ * Placa: ESP32-WROOM-32, ESP32-C6 o ESP32-S3
  * Concepto: varias salidas digitales, secuencia temporizada, funciones propias
  * Montaje: LED rojo en GPIO21, amarillo en GPIO22, verde en GPIO23 (220 ohm c/u)
  */

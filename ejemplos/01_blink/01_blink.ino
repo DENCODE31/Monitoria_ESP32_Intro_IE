@@ -1,7 +1,7 @@
 /*
  * 01_blink.ino - Parpadeo de un LED externo
  * Monitoria: Introduccion al ESP32 - Intro. Ing. Electronica (UNAL)
- * Placa: ESP32-WROOM-32 o ESP32-C6 DevKitC-1
+ * Placa: ESP32-WROOM-32, ESP32-C6 o ESP32-S3
  * Concepto: setup()/loop(), pinMode(), digitalWrite(), delay()
  * Montaje: LED en GPIO21 con resistencia de 220 ohm a GND
  *

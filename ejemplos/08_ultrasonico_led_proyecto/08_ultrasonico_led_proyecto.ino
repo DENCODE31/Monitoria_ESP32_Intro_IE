@@ -1,11 +1,12 @@
 /*
  * 08_ultrasonico_led_proyecto.ino - HC-SR04 con LED de aviso
  * Monitoria: Introduccion al ESP32 - Intro. Ing. Electronica (UNAL)
- * Placa: ESP32-WROOM-32 o ESP32-C6 DevKitC-1
+ * Placa: ESP32-WROOM-32, ESP32-C6 o ESP32-S3
  * Concepto: pulseIn(), sensor de tiempo, umbral de distancia, millis()
  * Montaje: HC-SR04 con VCC a 5V, GND a GND, TRIG en GPIO18 y ECHO en GPIO19
  *          a traves de un divisor (1 kohm entre ECHO y el pin, 2 kohm del pin
  *          a GND): el ECHO del sensor entrega 5 V y el ESP32 solo aguanta 3.3 V.
+ *          En ESP32-S3, GPIO19 es USB D-: si el montaje falla, mueve ECHO a GPIO4.
  *          LED en GPIO21 con resistencia de 220 ohm a GND.
  */
 

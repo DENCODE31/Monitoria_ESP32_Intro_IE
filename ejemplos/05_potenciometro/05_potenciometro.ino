@@ -1,7 +1,7 @@
 /*
  * 05_potenciometro.ino - Lectura analogica de 12 bits
  * Monitoria: Introduccion al ESP32 - Intro. Ing. Electronica (UNAL)
- * Placa: ESP32-WROOM-32 o ESP32-C6 DevKitC-1
+ * Placa: ESP32-WROOM-32, ESP32-C6 o ESP32-S3
  * Concepto: analogRead(), resolucion 12 bits, map(), Monitor Serie
  * Montaje: potenciometro (extremos a 3V3 y GND, cursor al pin analogico)
  *          LED en GPIO21 con 220 ohm a GND
@@ -9,12 +9,15 @@
  * El unico pin que cambia entre placas es el del ADC:
  *   WROOM-32 -> GPIO32 (ADC1_CH4)
  *   ESP32-C6 -> GPIO0  (ADC1_CH0)
+ *   ESP32-S3 -> GPIO1  (ADC1_CH0)
  */
 
 // La placa seleccionada en el IDE define estas macros: no hay que tocar nada.
 // ARDUINO_ESP32C6_DEV la pone la variante C6; CONFIG_IDF_TARGET_ESP32C6 viene del core.
 #if defined(ARDUINO_ESP32C6_DEV) || defined(CONFIG_IDF_TARGET_ESP32C6)
 const uint8_t PIN_ADC = 0;    // ESP32-C6 DevKitC-1: GPIO0 (ADC1_CH0)
+#elif defined(ARDUINO_ESP32S3_DEV) || defined(CONFIG_IDF_TARGET_ESP32S3)
+const uint8_t PIN_ADC = 1;    // ESP32-S3 DevKitC-1: GPIO1 (ADC1_CH0)
 #else
 const uint8_t PIN_ADC = 32;   // ESP32-WROOM-32: GPIO32 (ADC1_CH4)
 #endif
