@@ -12,6 +12,7 @@ Sketch autocontenido por carpeta: el `.ino` es para **Arduino IDE** y el `main.c
 | 05 | `05_potenciometro` | ADC 12 bits, `map`, Serial | 32 / 0, 21 |
 | 06 | `06_alerta_luz` | LDR + LED + buzzer, histéresis | 32 / 0, 21, 22 |
 | 07 | `07_wifi_scan` | `WiFi.scanNetworks()` | — |
+| 08 | `08_ultrasonico_led_proyecto` | `pulseIn()`, umbral de distancia, LED del proyecto final | 18, 19, 21 |
 
 ## Versión ESP-IDF (`main.c`)
 
@@ -60,7 +61,9 @@ arduino-cli upload  --fqbn esp32:esp32:esp32c6 -p /dev/ttyACM0 ejemplos/01_blink
 ## Orden sugerido
 
 ```
-00 → 01 → 02 → 03 → 04 → 05 → 06 → 07
+00 → 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08
 ```
 
-Los ejemplos 03, 04, 05 y 06 ya usan `millis()`: a partir de ahí no se bloquea el programa con `delay()`.
+Los ejemplos 03, 04, 05, 06 y 08 ya usan `millis()`: a partir de ahí no se bloquea el programa con `delay()`.
+
+El 08 usa los pines del proyecto final (sensor de parqueadero), para no recablear después.

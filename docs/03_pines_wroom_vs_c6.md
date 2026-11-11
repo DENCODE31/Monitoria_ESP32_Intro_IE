@@ -12,6 +12,8 @@ La monitoría usa **pines comunes** para que el mismo montaje y el mismo código
 | LED 2 | GPIO22 | GPIO22 | ✅ |
 | LED 3 | GPIO23 | GPIO23 | ✅ |
 | Pulsador | GPIO14 | GPIO14 | ✅ |
+| HC-SR04 TRIG | GPIO18 | GPIO18 | ✅ |
+| HC-SR04 ECHO | GPIO19 | GPIO19 | ✅ |
 | Buzzer | GPIO22 | GPIO22 | ✅ |
 | Entrada analógica (potenciómetro / LDR) | **GPIO32** | **GPIO0** | ❌ |
 
