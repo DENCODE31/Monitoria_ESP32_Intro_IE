@@ -140,6 +140,8 @@ Regla: **el ESP32 alimenta sensores pequeños, no motores**. Un servo o un relé
 
 ## 7. Heltec WiFi LoRa 32 V3 (ESP32-S3 con LoRa)
 
+> Solo para las demostraciones del monitor. Los estudiantes usan WROOM-32, C6 o S3 con el mapa común.
+
 Esta placa **no** puede usar el mapa común: su S3 no tiene GPIO22 ni GPIO23, y muchos pines están ocupados por hardware interno.
 
 | Pines ocupados | Función en la placa |
