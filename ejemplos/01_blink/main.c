@@ -15,7 +15,11 @@
 #include "freertos/task.h"
 #include "driver/gpio.h"
 
+#if defined(HELTEC_V3)
+#define LED_PIN      GPIO_NUM_4     // Heltec WiFi LoRa 32 V3: GPIO4 libre
+#else
 #define LED_PIN      GPIO_NUM_21
+#endif
 #define PERIODO_MS   500
 
 void app_main(void)

@@ -21,7 +21,10 @@
 #include "esp_adc/adc_oneshot.h"
 #include "esp_timer.h"
 
-#if defined(CONFIG_IDF_TARGET_ESP32C6)
+#if defined(HELTEC_V3)
+#define PIN_ADC      2
+#define CANAL_ADC    ADC_CHANNEL_1    // Heltec V3: GPIO2 (ADC1_CH1); GPIO1 es bateria
+#elif defined(CONFIG_IDF_TARGET_ESP32C6)
 #define PIN_ADC      0
 #define CANAL_ADC    ADC_CHANNEL_0    // ESP32-C6 DevKitC-1: GPIO0 (ADC1_CH0)
 #elif defined(CONFIG_IDF_TARGET_ESP32S3)
@@ -32,8 +35,13 @@
 #define CANAL_ADC    ADC_CHANNEL_4    // ESP32-WROOM-32: GPIO32 (ADC1_CH4)
 #endif
 
+#if defined(HELTEC_V3)
+#define LED              GPIO_NUM_4    // Heltec V3: GPIO21 es OLED_RST
+#define BUZZER           GPIO_NUM_7    // Heltec V3: GPIO22 no existe en el S3
+#else
 #define LED              GPIO_NUM_21
 #define BUZZER           GPIO_NUM_22
+#endif
 #define CANAL_BUZZER     LEDC_CHANNEL_1
 #define TIMER_BUZZER     LEDC_TIMER_1
 #define FREC_BUZZER_HZ   1200      // buzzer pasivo: necesita frecuencia

@@ -12,7 +12,9 @@
  */
 
 // La placa seleccionada en el IDE define estas macros: no hay que tocar nada.
-#if defined(ARDUINO_ESP32C6_DEV) || defined(CONFIG_IDF_TARGET_ESP32C6)
+#if defined(HELTEC_V3)
+const uint8_t PIN_LDR = 2;    // Heltec V3: GPIO2 (ADC1_CH1); GPIO1 es la bateria
+#elif defined(ARDUINO_ESP32C6_DEV) || defined(CONFIG_IDF_TARGET_ESP32C6)
 const uint8_t PIN_LDR = 0;    // ESP32-C6 DevKitC-1: GPIO0 (ADC1_CH0)
 #elif defined(ARDUINO_ESP32S3_DEV) || defined(CONFIG_IDF_TARGET_ESP32S3)
 const uint8_t PIN_LDR = 1;    // ESP32-S3 DevKitC-1: GPIO1 (ADC1_CH0)
@@ -20,8 +22,13 @@ const uint8_t PIN_LDR = 1;    // ESP32-S3 DevKitC-1: GPIO1 (ADC1_CH0)
 const uint8_t PIN_LDR = 32;   // ESP32-WROOM-32: GPIO32 (ADC1_CH4)
 #endif
 
+#if defined(HELTEC_V3)
+const uint8_t LED    = 4;     // Heltec V3: GPIO21 es OLED_RST
+const uint8_t BUZZER = 7;     // Heltec V3: GPIO22 no existe en el S3
+#else
 const uint8_t LED    = 21;
 const uint8_t BUZZER = 22;
+#endif
 
 const int UMBRAL     = 2000;  // calibrar con el Monitor Serie
 const int HISTERESIS = 150;   // evita el titileo cerca del umbral

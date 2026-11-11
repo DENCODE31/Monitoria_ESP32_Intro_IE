@@ -25,7 +25,10 @@
 
 // ---------- PIN Y CANAL DEL ADC ----------
 // El target del proyecto define CONFIG_IDF_TARGET_ESP32C6 y elige solo.
-#if defined(CONFIG_IDF_TARGET_ESP32C6)
+#if defined(HELTEC_V3)
+#define PIN_ADC       2                 // Heltec V3: GPIO2 es entrada analogica
+#define CANAL_ADC     ADC_CHANNEL_1     // y ese GPIO pertenece al canal 1
+#elif defined(CONFIG_IDF_TARGET_ESP32C6)
 #define PIN_ADC       0                 // ESP32-C6: GPIO0 es entrada analogica
 #define CANAL_ADC     ADC_CHANNEL_0     // y ese GPIO pertenece al canal 0
 #elif defined(CONFIG_IDF_TARGET_ESP32S3)
@@ -37,7 +40,11 @@
 #endif
 
 // ---------- NUMEROS DE LOS PINES ----------
+#if defined(HELTEC_V3)
+#define PIN_LED       GPIO_NUM_4        // Heltec V3: GPIO21 es OLED_RST
+#else
 #define PIN_LED       GPIO_NUM_21       // LED: se enciende cuando hay poca luz
+#endif
 
 // ---------- VALORES QUE PODEMOS CAMBIAR ----------
 // Si la lectura baja de este valor, se prende el LED.

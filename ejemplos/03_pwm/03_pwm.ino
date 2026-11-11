@@ -6,7 +6,11 @@
  * Montaje: LED en GPIO21 con resistencia de 220 ohm a GND
  */
 
+#if defined(HELTEC_V3)
+const uint8_t LED = 4;         // Heltec WiFi LoRa 32 V3: GPIO4 libre
+#else
 const uint8_t LED = 21;
+#endif
 const uint8_t PASO = 3;
 const uint16_t INTERVALO_MS = 15;
 

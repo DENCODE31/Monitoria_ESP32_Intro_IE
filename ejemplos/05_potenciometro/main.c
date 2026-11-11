@@ -21,7 +21,10 @@
 #include "esp_adc/adc_oneshot.h"
 #include "esp_timer.h"
 
-#if defined(CONFIG_IDF_TARGET_ESP32C6)
+#if defined(HELTEC_V3)
+#define PIN_ADC      2
+#define CANAL_ADC    ADC_CHANNEL_1    // Heltec V3: GPIO2 (ADC1_CH1); GPIO1 es bateria
+#elif defined(CONFIG_IDF_TARGET_ESP32C6)
 #define PIN_ADC      0
 #define CANAL_ADC    ADC_CHANNEL_0    // ESP32-C6 DevKitC-1: GPIO0 (ADC1_CH0)
 #elif defined(CONFIG_IDF_TARGET_ESP32S3)
@@ -32,7 +35,11 @@
 #define CANAL_ADC    ADC_CHANNEL_4    // ESP32-WROOM-32: GPIO32 (ADC1_CH4)
 #endif
 
+#if defined(HELTEC_V3)
+#define LED              GPIO_NUM_4    // Heltec V3: GPIO21 es OLED_RST
+#else
 #define LED              GPIO_NUM_21
+#endif
 #define INTERVALO_MS     250
 #define UMBRAL           2048      // mitad de 4095
 #define FRECUENCIA_HZ    5000

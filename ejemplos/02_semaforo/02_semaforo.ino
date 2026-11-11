@@ -6,9 +6,16 @@
  * Montaje: LED rojo en GPIO21, amarillo en GPIO22, verde en GPIO23 (220 ohm c/u)
  */
 
+#if defined(HELTEC_V3)
+// Heltec V3 usa ESP32-S3: no existen GPIO22 ni GPIO23.
+const uint8_t LED_ROJO      = 4;
+const uint8_t LED_AMARILLO  = 5;
+const uint8_t LED_VERDE     = 6;
+#else
 const uint8_t LED_ROJO      = 21;
 const uint8_t LED_AMARILLO  = 22;
 const uint8_t LED_VERDE     = 23;
+#endif
 
 const uint16_t T_VERDE    = 3000;
 const uint16_t T_AMARILLO = 1000;

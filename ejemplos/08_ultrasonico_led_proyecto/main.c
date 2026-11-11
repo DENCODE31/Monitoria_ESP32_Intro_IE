@@ -23,9 +23,15 @@
 #include "esp_rom_sys.h"              // esp_rom_delay_us: esperas de pocos us
 
 // ---------- NUMEROS DE LOS PINES ----------
+#if defined(HELTEC_V3)
+#define PIN_TRIG         GPIO_NUM_47   // Heltec V3: GPIO18 es OLED SCL
+#define PIN_ECHO         GPIO_NUM_48   // Heltec V3: GPIO19 es USB D-
+#define PIN_LED          GPIO_NUM_4    // Heltec V3: GPIO21 es OLED_RST
+#else
 #define PIN_TRIG         GPIO_NUM_18   // TRIG: el ESP32 manda el disparo por aqui
 #define PIN_ECHO         GPIO_NUM_19   // ECHO: el sensor responde por aqui
 #define PIN_LED          GPIO_NUM_21   // LED: avisa que hay algo cerca
+#endif
 
 // ---------- VALORES QUE PODEMOS CAMBIAR ----------
 #define UMBRAL_CM        20.0f         // si la distancia es menor a 20 cm, prende el LED

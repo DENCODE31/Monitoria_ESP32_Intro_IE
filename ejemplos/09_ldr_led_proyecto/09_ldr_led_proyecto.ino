@@ -14,14 +14,20 @@
 
 // ---------- NUMEROS DE LOS PINES ----------
 // Estas macros las define la placa elegida: no hay que tocar nada.
-#if defined(ARDUINO_ESP32C6_DEV) || defined(CONFIG_IDF_TARGET_ESP32C6)
+#if defined(HELTEC_V3)
+const uint8_t PIN_LDR = 2;            // Heltec V3: GPIO2 (ADC1_CH1)
+#elif defined(ARDUINO_ESP32C6_DEV) || defined(CONFIG_IDF_TARGET_ESP32C6)
 const uint8_t PIN_LDR = 0;            // ESP32-C6: GPIO0 es entrada analogica
 #elif defined(ARDUINO_ESP32S3_DEV) || defined(CONFIG_IDF_TARGET_ESP32S3)
 const uint8_t PIN_LDR = 1;            // ESP32-S3: GPIO1 es entrada analogica
 #else
 const uint8_t PIN_LDR = 32;           // ESP32-WROOM-32: GPIO32 es entrada analogica
 #endif
+#if defined(HELTEC_V3)
+const uint8_t PIN_LED = 4;            // Heltec V3: GPIO21 es OLED_RST
+#else
 const uint8_t PIN_LED = 21;           // LED: se enciende cuando hay poca luz
+#endif
 
 // ---------- VALORES QUE PODEMOS CAMBIAR ----------
 // Si la lectura baja de este valor, se prende el LED.

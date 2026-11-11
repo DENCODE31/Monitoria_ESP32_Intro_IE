@@ -2,6 +2,14 @@
 
 Sketch autocontenido por carpeta: el `.ino` es para **Arduino IDE** y el `main.c` de la misma carpeta es la versión para **ESP-IDF v5.x** (VS Code + extensión ESP-IDF). Ambos funcionan igual en WROOM-32, ESP32-C6 y ESP32-S3, salvo el pin del ADC que se resuelve con `#if` (`ARDUINO_ESP32C6_DEV` / `ARDUINO_ESP32S3_DEV` / `CONFIG_IDF_TARGET_ESP32C6` / `CONFIG_IDF_TARGET_ESP32S3`).
 
+En la **Heltec WiFi LoRa 32 V3** (ESP32-S3 con radio LoRa) los pines cambian: el S3 no tiene GPIO22 ni GPIO23, y varios GPIO son de la placa. Estos ejemplos traen un bloque `#elif defined(HELTEC_V3)`; basta declarar la macro para usarlos:
+
+```cpp
+#define HELTEC_V3        // primera linea del .ino, o despues de los #include en main.c
+```
+
+Mapa del Heltec V3: LED 4/5/6, buzzer 7, pulsador 20, TRIG 47, ECHO 48, ADC en GPIO2 (`ADC1_CH1`). Detalle completo en [`docs/03_pines_wroom_vs_c6.md`](../docs/03_pines_wroom_vs_c6.md).
+
 | # | Carpeta | Concepto | Pines |
 |---|---|---|---|
 | 00 | `00_hola_serial` | Info del chip, `Serial` a 115200 | — |
@@ -20,7 +28,7 @@ Sketch autocontenido por carpeta: el `.ino` es para **Arduino IDE** y el `main.c
 Cada carpeta trae un `main.c` con la misma lógica que el `.ino`, escrito con la API de ESP-IDF v5.x. No es un proyecto completo: es el archivo que se reemplaza dentro de un proyecto generado por la extensión.
 
 1. En VS Code: **ESP-IDF: New Project** (o **Show Examples** → `get-started` → `sample_project`).
-2. Elige el target: `esp32` (WROOM-32), `esp32c6` o `esp32s3`.
+2. Elige el target: `esp32` (WROOM-32), `esp32c6`, `esp32s3` o `esp32s3` con la placa Heltec (define `HELTEC_V3`).
 3. Reemplaza el contenido de `main/main.c` por el del ejemplo.
 4. **ESP-IDF: Build** y **ESP-IDF: Flash**, luego abre el monitor a **115200**.
 
@@ -45,6 +53,7 @@ Equivalencias que cambian al pasar de Arduino a ESP-IDF:
    - WROOM-32 → `ESP32 Dev Module`
    - C6 → `ESP32C6 DevKitC-1`
    - S3 → `ESP32S3 Dev Module`
+   - Heltec V3 → `Heltec WiFi LoRa 32(V3)`
 3. Verifica **Tools → Port**.
 4. **Upload (→)** y abre el Monitor Serie a **115200**.
 
@@ -62,6 +71,10 @@ arduino-cli upload  --fqbn esp32:esp32:esp32c6 -p /dev/ttyACM0 ejemplos/01_blink
 # ESP32-S3
 arduino-cli compile --fqbn esp32:esp32:esp32s3 ejemplos/01_blink
 arduino-cli upload  --fqbn esp32:esp32:esp32s3 -p /dev/ttyACM0 ejemplos/01_blink
+
+# Heltec WiFi LoRa 32 V3 (recuerda #define HELTEC_V3 en el sketch)
+arduino-cli compile --fqbn esp32:esp32:heltec_wifi_lora_32_V3 ejemplos/01_blink
+arduino-cli upload  --fqbn esp32:esp32:heltec_wifi_lora_32_V3 -p /dev/ttyUSB0 ejemplos/01_blink
 ```
 
 ## Orden sugerido

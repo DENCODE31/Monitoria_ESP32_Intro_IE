@@ -11,7 +11,11 @@
  * Con un LED externo en GPIO21 el mismo montaje y codigo sirven en las dos.
  */
 
+#if defined(HELTEC_V3)
+const uint8_t LED_PIN = 4;     // Heltec WiFi LoRa 32 V3: GPIO4 libre
+#else
 const uint8_t LED_PIN = 21;
+#endif
 const uint16_t PERIODO_MS = 500;
 
 void setup() {

@@ -11,9 +11,15 @@
  */
 
 // ---------- NUMEROS DE LOS PINES ----------
+#if defined(HELTEC_V3)
+const uint8_t PIN_TRIG = 47;          // Heltec V3: GPIO18 es OLED SCL
+const uint8_t PIN_ECHO = 48;          // Heltec V3: GPIO19 es USB D-
+const uint8_t PIN_LED  = 4;           // Heltec V3: GPIO21 es OLED_RST
+#else
 const uint8_t PIN_TRIG = 18;          // TRIG: por aqui el ESP32 manda el disparo
 const uint8_t PIN_ECHO = 19;          // ECHO: por aqui responde el sensor
 const uint8_t PIN_LED  = 21;          // LED: avisa que hay algo cerca
+#endif
 
 // ---------- VALORES QUE PODEMOS CAMBIAR ----------
 const float UMBRAL_CM = 20.0;         // si la distancia es menor a 20 cm, prende el LED

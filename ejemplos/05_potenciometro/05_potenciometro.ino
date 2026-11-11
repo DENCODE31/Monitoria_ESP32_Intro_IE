@@ -14,7 +14,9 @@
 
 // La placa seleccionada en el IDE define estas macros: no hay que tocar nada.
 // ARDUINO_ESP32C6_DEV la pone la variante C6; CONFIG_IDF_TARGET_ESP32C6 viene del core.
-#if defined(ARDUINO_ESP32C6_DEV) || defined(CONFIG_IDF_TARGET_ESP32C6)
+#if defined(HELTEC_V3)
+const uint8_t PIN_ADC = 2;    // Heltec V3: GPIO2 (ADC1_CH1); GPIO1 es la bateria
+#elif defined(ARDUINO_ESP32C6_DEV) || defined(CONFIG_IDF_TARGET_ESP32C6)
 const uint8_t PIN_ADC = 0;    // ESP32-C6 DevKitC-1: GPIO0 (ADC1_CH0)
 #elif defined(ARDUINO_ESP32S3_DEV) || defined(CONFIG_IDF_TARGET_ESP32S3)
 const uint8_t PIN_ADC = 1;    // ESP32-S3 DevKitC-1: GPIO1 (ADC1_CH0)
@@ -22,7 +24,11 @@ const uint8_t PIN_ADC = 1;    // ESP32-S3 DevKitC-1: GPIO1 (ADC1_CH0)
 const uint8_t PIN_ADC = 32;   // ESP32-WROOM-32: GPIO32 (ADC1_CH4)
 #endif
 
+#if defined(HELTEC_V3)
+const uint8_t LED = 4;        // Heltec V3: GPIO21 es OLED_RST
+#else
 const uint8_t LED = 21;
+#endif
 const uint16_t INTERVALO_MS = 250;
 const int UMBRAL = 2048;      // mitad de 4095
 

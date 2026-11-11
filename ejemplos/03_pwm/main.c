@@ -15,7 +15,11 @@
 #include "driver/ledc.h"
 #include "esp_timer.h"
 
+#if defined(HELTEC_V3)
+#define LED              GPIO_NUM_4    // Heltec WiFi LoRa 32 V3: GPIO4 libre
+#else
 #define LED              GPIO_NUM_21
+#endif
 #define PASO             3
 #define INTERVALO_MS     15
 #define FRECUENCIA_HZ    5000      // 5 kHz: muy por encima del parpadeo visible

@@ -14,8 +14,13 @@
 #include "driver/gpio.h"
 #include "esp_timer.h"
 
+#if defined(HELTEC_V3)
+#define BOTON          GPIO_NUM_20   // Heltec V3: GPIO14 es LoRa DIO1
+#define LED            GPIO_NUM_4    // Heltec V3: GPIO21 es OLED_RST
+#else
 #define BOTON          GPIO_NUM_14
 #define LED            GPIO_NUM_21
+#endif
 #define DEBOUNCE_MS    30
 
 static uint32_t millis(void)

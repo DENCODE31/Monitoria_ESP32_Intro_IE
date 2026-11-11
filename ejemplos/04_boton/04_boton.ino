@@ -8,8 +8,13 @@
  * Ojo: con INPUT_PULLUP la logica se invierte -> LOW significa presionado.
  */
 
+#if defined(HELTEC_V3)
+const uint8_t BOTON = 20;      // Heltec V3: GPIO14 es LoRa DIO1
+const uint8_t LED   = 4;       // Heltec V3: GPIO21 es OLED_RST
+#else
 const uint8_t BOTON = 14;
 const uint8_t LED   = 21;
+#endif
 const uint16_t DEBOUNCE_MS = 30;
 
 bool lecturaAnterior = HIGH;

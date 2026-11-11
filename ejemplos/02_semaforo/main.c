@@ -10,9 +10,16 @@
 #include "freertos/task.h"
 #include "driver/gpio.h"
 
+#if defined(HELTEC_V3)
+// Heltec V3 usa ESP32-S3: no existen GPIO22 ni GPIO23.
+#define LED_ROJO      GPIO_NUM_4
+#define LED_AMARILLO  GPIO_NUM_5
+#define LED_VERDE     GPIO_NUM_6
+#else
 #define LED_ROJO      GPIO_NUM_21
 #define LED_AMARILLO  GPIO_NUM_22
 #define LED_VERDE     GPIO_NUM_23
+#endif
 
 #define T_VERDE       3000
 #define T_AMARILLO    1000
