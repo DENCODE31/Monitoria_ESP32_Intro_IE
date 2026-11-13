@@ -68,7 +68,8 @@ Monitoria_ESP32_Intro_IE/
 │   ├── 07_wifi_scan/               # demo de Wi-Fi
 │   ├── 08_ultrasonico_led_proyecto/ # HC-SR04 + LED
 │   ├── 09_ldr_led_proyecto/        # LDR + LED
-│   └── 10_servo_barrera/           # HC-SR04 + servo
+│   ├── 10_servo_barrera/           # HC-SR04 + servo
+│   └── 11_servo_buzzer/            # HC-SR04 + servo + buzzer
 └── hardware/
     ├── lista_materiales.md
     └── conexiones.md
