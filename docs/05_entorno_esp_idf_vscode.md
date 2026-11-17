@@ -104,6 +104,8 @@ Un proyecto ESP-IDF tiene **un solo** `main.c`. Si pegas dos ejemplos, el segund
 | LDR + LED | `ejemplos/09_ldr_led_proyecto/main.c` |
 | Servo + barrera | `ejemplos/10_servo_barrera/main.c` |
 | Servo + buzzer | `ejemplos/11_servo_buzzer/main.c` |
+| LCD 16x2 I2C | `ejemplos/12_lcd_i2c/main.c` |
+| OLED I2C | `ejemplos/13_oled_i2c/main.c` |
 
 ---
 

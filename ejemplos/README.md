@@ -18,6 +18,8 @@ Sketch autocontenido por carpeta: el `.ino` es para **Arduino IDE** y el `main.c
 | 09 | `09_ldr_led_proyecto` | `analogRead`, umbral de luz, LED del proyecto final | 32 / 0 / 1, 21 |
 | 10 | `10_servo_barrera` | HC-SR04 + servo, barrera que abre al acercarse | 18, 19, 21 |
 | 11 | `11_servo_buzzer` | HC-SR04 + servo + buzzer, aviso sonoro al abrir y cerrar | 18, 19, 21, 22 |
+| 12 | `12_lcd_i2c` | LCD 16x2 con modulo PCF8574 | 21, 22 (I2C) |
+| 13 | `13_oled_i2c` | OLED SSD1306 128x64, buffer de pixeles | 21, 22 (I2C) |
 
 ## Versión ESP-IDF (`main.c`)
 
@@ -72,7 +74,7 @@ arduino-cli upload  --fqbn esp32:esp32:esp32s3 -p /dev/ttyACM0 ejemplos/01_blink
 ## Orden sugerido
 
 ```
-00 → 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08 → 09 → 10 → 11
+00 → 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08 → 09 → 10 → 11 → 12 → 13
 ```
 
 Los ejemplos 03, 04, 05, 06, 08 y 09 ya usan `millis()`: a partir de ahí no se bloquea el programa con `delay()`.
@@ -82,3 +84,5 @@ El 08, el 09 y el 10 usan los pines del proyecto final (sensor de parqueadero), 
 El 10 y el 11 alimentan el servo desde una fuente externa de 5 V, nunca desde `3V3`: el servo pide picos de 500 mA.
 
 El 11 suma un **buzzer pasivo** en GPIO22: pitido agudo (1500 Hz) al abrir y grave (800 Hz) al cerrar, apagado con `millis()` para no frenar la medicion. Si tienes buzzer activo, basta `digitalWrite` en vez de `tone()`.
+
+El 12 y el 13 requieren librerias en Arduino IDE (`LiquidCrystal_I2C`; `Adafruit GFX` + `Adafruit SSD1306`). En ESP-IDF van sin librerias externas. Direcciones, cableado y escaner I2C en [`docs/06_pantallas_i2c.md`](../docs/06_pantallas_i2c.md).

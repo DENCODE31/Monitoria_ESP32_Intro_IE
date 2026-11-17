@@ -56,6 +56,7 @@ Monitoria_ESP32_Intro_IE/
 │   ├── 03_pines_wroom_vs_c6.md     # tabla comparada de pines
 │   ├── 04_plan_sesion.md           # guion minuto a minuto del monitor
 │   ├── 05_entorno_esp_idf_vscode.md # flujo completo con VS Code + ESP-IDF
+│   ├── 06_pantallas_i2c.md         # LCD 16x2 y OLED SSD1306
 │   └── CHEATSHEET.md               # resumen de una página
 ├── ejemplos/
 │   ├── 00_hola_serial/             # info del chip por Monitor Serie
@@ -69,7 +70,9 @@ Monitoria_ESP32_Intro_IE/
 │   ├── 08_ultrasonico_led_proyecto/ # HC-SR04 + LED
 │   ├── 09_ldr_led_proyecto/        # LDR + LED
 │   ├── 10_servo_barrera/           # HC-SR04 + servo
-│   └── 11_servo_buzzer/            # HC-SR04 + servo + buzzer
+│   ├── 11_servo_buzzer/            # HC-SR04 + servo + buzzer
+│   ├── 12_lcd_i2c/                 # LCD 16x2 + PCF8574
+│   └── 13_oled_i2c/                # OLED SSD1306 128x64
 └── hardware/
     ├── lista_materiales.md
     └── conexiones.md
@@ -100,6 +103,8 @@ Detalle y pines prohibidos en [`docs/03_pines_wroom_vs_c6.md`](docs/03_pines_wro
 | Buzzer pasivo | 1 | Integrador |
 | Cables dupont | 20 | Macho-macho |
 | Cable USB de datos | 1 | **No sirve uno de solo carga** |
+| LCD 16x2 con modulo I2C | 1 | PCF8574, direccion 0x27 |
+| OLED SSD1306 128x64 | 1 | I2C, direccion 0x3C |
 
 Kit completo: ~$60.000 – $85.000 COP. Ver [`hardware/lista_materiales.md`](hardware/lista_materiales.md).
 
