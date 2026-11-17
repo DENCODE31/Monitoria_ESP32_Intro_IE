@@ -3,7 +3,12 @@
  * Monitoria: Introduccion al ESP32 - Intro. Ing. Electronica (UNAL)
  * Placa: ESP32-WROOM-32, ESP32-C6 o ESP32-S3
  * Concepto: bus I2C, pantalla de pixeles, buffer de Video, fuentes
- * Montaje: OLED VCC a 3V3, GND a GND, SDA y SCL segun la placa
+ * Conexiones del OLED:
+ *   VCC -> 3V3
+ *   GND -> GND
+ *   SDA -> GPIO21 (WROOM-32) / GPIO6 (C6) / GPIO8 (S3) / GPIO17 (Heltec V3)
+ *   SCL -> GPIO22 (WROOM-32) / GPIO7 (C6) / GPIO9 (S3) / GPIO18 (Heltec V3)
+ *   Direccion I2C: 0x3C (algunas pantallas usan 0x3D)
  *
  * Librerias necesarias (Instalar > Librerias):
  *   - Adafruit GFX Library

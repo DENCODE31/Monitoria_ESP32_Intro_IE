@@ -3,8 +3,12 @@
  * Monitoria: Introduccion al ESP32 - Intro. Ing. Electronica (UNAL)
  * Entorno: VS Code + extension ESP-IDF (IDF v5.3+ / v6.x)
  * Concepto: bus I2C maestro, expandidor PCF8574, HD44780 en modo 4 bits
- * Montaje: modulo LCD I2C con VCC a 3V3, GND a GND, SDA y SCL segun la placa
- * Direccion: 0x27 (algunos modulos usan 0x3F)
+ * Conexiones del modulo LCD I2C:
+ *   VCC -> 3V3
+ *   GND -> GND
+ *   SDA -> GPIO21 (WROOM-32) / GPIO6 (C6) / GPIO8 (S3) / GPIO17 (Heltec V3)
+ *   SCL -> GPIO22 (WROOM-32) / GPIO7 (C6) / GPIO9 (S3) / GPIO18 (Heltec V3)
+ *   Direccion I2C: 0x27 (algunos modulos usan 0x3F)
  *
  * No se necesita ningun componente externo: el control del HD44780 y del
  * PCF8574 esta escrito aqui para que se vea que hace cada libreria.

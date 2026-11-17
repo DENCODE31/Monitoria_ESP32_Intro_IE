@@ -3,8 +3,12 @@
  * Monitoria: Introduccion al ESP32 - Intro. Ing. Electronica (UNAL)
  * Entorno: VS Code + extension ESP-IDF (IDF v5.3+ / v6.x)
  * Concepto: bus I2C maestro, buffer de pixeles, fuente 5x7, comandos SSD1306
- * Montaje: OLED VCC a 3V3, GND a GND, SDA y SCL segun la placa
- * Direccion: 0x3C (algunas pantallas usan 0x3D)
+ * Conexiones del OLED:
+ *   VCC -> 3V3
+ *   GND -> GND
+ *   SDA -> GPIO21 (WROOM-32) / GPIO6 (C6) / GPIO8 (S3) / GPIO17 (Heltec V3)
+ *   SCL -> GPIO22 (WROOM-32) / GPIO7 (C6) / GPIO9 (S3) / GPIO18 (Heltec V3)
+ *   Direccion I2C: 0x3C (algunas pantallas usan 0x3D)
  *
  * No se necesita ningun componente externo: aqui estan los comandos del
  * SSD1306 y una fuente minima para entender que hace una libreria grafica.

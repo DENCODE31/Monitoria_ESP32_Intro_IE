@@ -3,7 +3,12 @@
  * Monitoria: Introduccion al ESP32 - Intro. Ing. Electronica (UNAL)
  * Placa: ESP32-WROOM-32, ESP32-C6 o ESP32-S3
  * Concepto: bus I2C, direcciones de dispositivo, LCD HD44780 en modo 4 bits
- * Montaje: modulo LCD I2C con VCC a 3V3, GND a GND, SDA y SCL segun la placa
+ * Conexiones del modulo LCD I2C:
+ *   VCC -> 3V3
+ *   GND -> GND
+ *   SDA -> GPIO21 (WROOM-32) / GPIO6 (C6) / GPIO8 (S3) / GPIO17 (Heltec V3)
+ *   SCL -> GPIO22 (WROOM-32) / GPIO7 (C6) / GPIO9 (S3) / GPIO18 (Heltec V3)
+ *   Direccion I2C: 0x27 (algunos modulos usan 0x3F)
  *
  * Libreria necesaria: LiquidCrystal_I2C (Instalar > Librerias > buscar
  * "LiquidCrystal_I2C" > instalar la de John Rickman).
