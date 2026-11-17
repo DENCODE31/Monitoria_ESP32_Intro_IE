@@ -61,9 +61,9 @@ void setup() {
     pantalla.setTextColor(SSD1306_WHITE);
 
     pantalla.setCursor(0, 0);
-    pantalla.print(F("HOLA DESDE ESP32"));
+    pantalla.print(F("HOLA DESDE ESP32"));  // <- escribe aqui el mensaje de la linea 1
     pantalla.setCursor(0, 16);
-    pantalla.print(F("OLED I2C 128x64"));
+    pantalla.print(F("OLED I2C 128x64"));   // <- escribe aqui el mensaje de la linea 2
 
     pantalla.display();               // envia el buffer a la pantalla
 }

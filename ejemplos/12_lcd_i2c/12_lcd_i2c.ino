@@ -51,9 +51,9 @@ void setup() {
     lcd.clear();
 
     lcd.setCursor(0, 0);              // columna 0, fila 0 (fila superior)
-    lcd.print("HOLA DESDE ESP32");
+    lcd.print("HOLA DESDE ESP32");   // <- escribe aqui el mensaje de la fila 0
     lcd.setCursor(0, 1);              // columna 0, fila 1 (fila inferior)
-    lcd.print("I2C LCD 16x2");
+    lcd.print("I2C LCD 16x2");       // <- escribe aqui el mensaje de la fila 1
 
     Serial.begin(115200);
     Serial.println(F("LCD I2C lista."));

@@ -249,8 +249,8 @@ void app_main(void)
 
     oled_inicializar();
     oled_borrar();
-    oled_texto("HOLA DESDE IDF", 0, 0);
-    oled_texto("OLED I2C 128x64", 0, 2);
+    oled_texto("HOLA DESDE IDF", 0, 0);      // <- escribe aqui el mensaje de la linea 1
+    oled_texto("OLED I2C 128x64", 0, 2);     // <- escribe aqui el mensaje de la linea 2
     oled_mostrar();
 
     printf("OLED I2C listo.\n");

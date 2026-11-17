@@ -156,9 +156,9 @@ void app_main(void)
     // 3. Inicializar y escribir el texto fijo
     lcd_inicializar();
     lcd_cursor(0, 0);
-    lcd_texto("HOLA DESDE IDF");
+    lcd_texto("HOLA DESDE IDF");     // <- escribe aqui el mensaje de la fila 0
     lcd_cursor(0, 1);
-    lcd_texto("I2C LCD 16x2");
+    lcd_texto("I2C LCD 16x2");       // <- escribe aqui el mensaje de la fila 1
 
     printf("LCD I2C lista.\n");
 
