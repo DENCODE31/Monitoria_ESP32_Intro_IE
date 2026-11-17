@@ -3,11 +3,16 @@
  * Monitoria: Introduccion al ESP32 - Intro. Ing. Electronica (UNAL)
  * Entorno: VS Code + extension ESP-IDF (IDF v5.x)
  * Concepto: sensor de distancia + actuador (servo), LEDC a 50 Hz, histeresis
- * Montaje: HC-SR04 con VCC a 5V, GND a GND, TRIG en GPIO18 y ECHO en GPIO19
- *          por divisor (1 kohm en serie, 2 kohm a GND).
- *          Servo de 5 V: senal en GPIO21, VCC a fuente de 5 V, GND comun.
+ * Conexiones (WROOM-32 / C6 / S3):
+ *   HC-SR04 VCC -> 5V
+ *   HC-SR04 GND -> GND
+ *   HC-SR04 TRIG -> GPIO18
+ *   HC-SR04 ECHO -> GPIO19 por divisor (1 kohm en serie, 2 kohm a GND)
+ *   Servo senal -> GPIO21
+ *   Servo VCC -> fuente externa de 5 V
+ *   Servo GND y HC-SR04 GND -> GND del ESP32 (GND comun)
  *
- * Heltec WiFi Kit / LoRa 32 V3: TRIG 47, ECHO 48, servo 5 (define HELTEC_V3).
+ * Heltec WiFi Kit / LoRa 32 V3 (define HELTEC_V3): TRIG 47, ECHO 48, servo 5.
  *
  * OJO: el servo NO se alimenta del 3V3 del ESP32. Consume picos de 500 mA.
  *      Usa el pin 5V de la placa o una fuente aparte con GND comun.

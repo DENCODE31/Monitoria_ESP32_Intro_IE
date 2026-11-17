@@ -3,11 +3,18 @@
  * Monitoria: Introduccion al ESP32 - Intro. Ing. Electronica (UNAL)
  * Entorno: VS Code + extension ESP-IDF (IDF v5.x)
  * Concepto: integrar sensor, servo y buzzer en un solo programa no bloqueante
- * Montaje: HC-SR04 (VCC=5V, TRIG=GPIO18, ECHO=GPIO19 por divisor, GND=GND)
- *          Servo: senal en GPIO21, VCC externo de 5 V, GND comun
- *          Buzzer pasivo en GPIO22
+ * Conexiones (WROOM-32 / C6 / S3):
+ *   HC-SR04 VCC -> 5V
+ *   HC-SR04 GND -> GND
+ *   HC-SR04 TRIG -> GPIO18
+ *   HC-SR04 ECHO -> GPIO19 por divisor (1 kohm en serie, 2 kohm a GND)
+ *   Servo senal -> GPIO21
+ *   Servo VCC -> fuente externa de 5 V
+ *   Buzzer pasivo -> GPIO22
+ *   Servo GND y HC-SR04 GND -> GND del ESP32 (GND comun)
  *
- * Heltec WiFi Kit / LoRa 32 V3: TRIG 47, ECHO 48, servo 5, buzzer 7.
+ * Heltec WiFi Kit / LoRa 32 V3 (define HELTEC_V3): TRIG 47, ECHO 48, servo 5,
+ * buzzer 7.
  *
  * OJO: el servo NO se alimenta del 3V3. Consume picos de 500 mA.
  *      Buzzer pasivo: necesita frecuencia; uno activo solo necesita HIGH.
